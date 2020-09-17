@@ -1,0 +1,6 @@
+{
+  "prettier.vueIndentScriptAndStyle": true,
+  "editor.formatOnSave": true,
+"launch": {},
+"prettier.arrowParens": "avoid"
+}
