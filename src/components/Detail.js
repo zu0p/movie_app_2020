@@ -1,23 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-class Detail extends React.Component {
-  componentDidMount() {
-    const { location, history } = this.props;
-    if (location.state == undefined) {
+const Detail = props => {
+  const location = props.location;
+  const [title, setTitle] = useState();
+  const setting = () => {
+    if (location.state === undefined) {
       // state가 없으면 즉, movie 클릭해서 온 접근이 아니면
       // redirect
-      history.push("/");
-    }
-  }
+      props.history.push("/");
+    } else setTitle(location.state.title);
+  };
+  useEffect(setting, []);
 
-  render() {
-    const { location } = this.props;
-
-    // render() -> componentDidMout() 순으로 실행
-    if (location.state) {
-      return <span>{location.state.title}</span>;
-    } else return null;
-  }
-}
+  if (location.state) {
+    return <span>{title}</span>;
+  } else return null;
+};
 
 export default Detail;
